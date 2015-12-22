@@ -10,7 +10,7 @@
     "dream"
   ],
   "author": "zhangzhang",
-  "date":"20151217",
+  "date":"20151222",
   "license": "ISC",
   "devDependencies": {
     "del": "^2.2.0",
