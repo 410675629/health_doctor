@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>我的病人【已处理】</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/doc.css">
+    <script type="text/javascript">
+    if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
+        var version = parseFloat(RegExp.$1);
+        if(version>2.3){
+            var phoneScale = parseInt(window.screen.width) / 640;
+            document.write('<meta name="viewport" content="width=640, minimum-scale = '+ phoneScale +', maximum-scale = '+ phoneScale +', target-densitydpi=device-dpi">');
+        }else{
+            document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+        }
+    }else{
+        document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+    }
+    </script>
+    <script src="http://mockjs.com/dist/mock.js"></script>
+</head>
+<body>
+    
+    <div class="docMyPaHeader">
+        <div class="back"> 
+            <a class="back-button" href="docMain.html">
+                <img src="images/icon_back.png"/>
+            </a> 
+        </div>
+        <div class="title">
+            <div style="line-height: 4rem;font-size: 120%">我的病人</div>
+        </div>
+    </div>
+    <div class="docMyPaLeft">
+        <div class="docMyPaContent">
+            <div class="docImg">
+                 <img src="images/tx1.jpg" width="88px">
+            </div>
+            <div class="docDes">
+                <span class="docName">李慧</span> 
+                <span class="docSex">女</span>
+                <span class="docAge">33岁</span>
+            </div>
+            <div class="docTel">
+                <a href="tel:15757184511"><img src="images/icon_phone.png" width="60px"/></a>
+            </div>
+        </div>
+        <div class="container">
+            <!-- 心率-->
+            <div class="content">
+            	<div class="datatitle">心率统计</div>
+                <div id="showHeartBeat" class="dataZoom" ></div>
+            </div>    
+        </div>
+
+        <div class="container">
+            <!-- 体温-->
+            <div class="content">
+            	<div class="datatitle">体温统计</div>
+                 <div id="showWeather" class="dataZoom" ></div>
+            </div>    
+        </div>
+
+        <div class="container">
+            <!-- 运动量-->
+            <div class="content">
+            	<div class="datatitle">运动量统计</div>
+                 <div id="showExercise" class="dataZoom" ></div>
+            </div>    
+        </div>
+        <div class="container">
+            <!-- 运动量-->
+            <div class="content">
+            	<div class="datatitle">卡路里统计</div>
+                 <div id="showCal" class="dataZoom" ></div>
+            </div>    
+        </div>
+
+        <div class="container">
+            <!-- 睡眠统计-->
+            <div class="content">
+            	<div class="datatitle">睡眠统计</div>
+                 <div id="showSleep" class="dataZoom" ></div>
+            </div>    
+        </div>
+
+        <div class="container">
+            <!-- 体重变化-->
+            <div class="content">
+            	<div class="datatitle">体重统计</div>
+                 <div id="showWeight" class="dataZoom" ></div>
+            </div>    
+        </div>
+       
+
+        <div class="docMyPaResult">
+            <i class="tip ycl">已处理</i>
+             <a href="#" class="more"><img src="images/icon_more.png" width="40px"></a>
+            <span class="pinfo">11:30PM 2015-9-11<br>最近10分钟心率异常波动</span>
+        </div>
+
+        <div class="docMyPaResult">
+            <i class="tip ycl">已处理</i>
+             <a href="#" class="more"><img src="images/icon_more.png" width="40px"></a>
+            <span class="pinfo">5:20PM 2015-9-02<br>最近10分钟心率异常波动</span>
+        </div>
+        <div class="docMyPaResult">
+            <i class="tip ycl">已处理</i>
+             <a href="#" class="more"><img src="images/icon_more.png" width="40px"></a>
+            <span class="pinfo">3:32PM 2015-9-01<br>最近10分钟心率异常波动</span>
+        </div>
+        <div class="docMyPaResult">
+            <i class="tip ycl">已处理</i>
+             <a href="#" class="more"><img src="images/icon_more.png" width="40px"></a>
+            <span class="pinfo">9:30PM 2015-8-14<br>最近10分钟心率异常波动</span>
+        </div>
+    </div>
+
+    <!-- ECharts单文件引入 -->
+    <script src="js/echarts.js"></script>
+    <script type="text/javascript">
+        // 路径配置
+        require.config({
+            paths: {
+                echarts: './build/dist'
+            }
+        });
+    </script>    
+    <script src="js/canvas_doc.js"></script>
+</body>

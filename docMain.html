@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>dox</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/doc.css">
+    <script type="text/javascript">
+        if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
+            var version = parseFloat(RegExp.$1);
+            if(version>2.3){
+                var phoneScale = parseInt(window.screen.width) / 640;
+                document.write('<meta name="viewport" content="width=640, minimum-scale = '+ phoneScale +', maximum-scale = '+ phoneScale +', target-densitydpi=device-dpi">');
+            }else{
+                document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+            }
+        }else{
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+        }
+    </script>
+    <script src="http://mockjs.com/dist/mock.js"></script>
+</head>
+<body>
+    <div class="docMainHeader">
+        <div class="docMainName"><span>吴颖 医师</span></div>
+        <div class="docMainHeaderContent">
+            <a href="docMyPaList.html"><div class="docMainPN">
+                <span class="docMainPNum">20</span>
+                <pre class="docMainPDetail">病人数</pre>
+            </div></a>
+            <div class="docMainPE">
+                <span class="docMainPEN">10</span>
+                <pre class="docMainPEDetail">未处理事件</pre>
+            </div>
+        </div>
+    </div>
+    <div class="docMainContent">
+        <!-- 事件 -->
+        <div class="docMainEvent">
+            <div class="docMainEventHeader">事件</div>
+            <ul class="eventList">
+               <a href="docNSpage.html"><li class="eventCh1 clearfix">
+                    
+                        <div class="eventChLeft"><img src="images/tx1.jpg" width="88px"></div>
+                        <div class="eventChCenter">
+                            <span class="pName">李慧<i class="eventTip wcl">未处理</i></span>
+                            <span class="pinfo">
+                                3:30PM 2015-12-2<br>
+                                最近10分钟心率异常波动,风险指数85
+                            </span>
+                        </div>
+                        <div class="eventChRight"><img src="images/icon_more.png" width="40px"></div>
+                </li>
+                </a>
+                <a href="docNSpage1.html">
+                <li class="eventCh2 clearfix">
+					
+                        <div class="eventChLeft"><img src="images/tx2.jpg" width="88px"></div>
+                        <div class="eventChCenter">
+                            <span class="pName">赵立辉<i class="eventTip wcl">未处理</i></span>
+                            <span class="pinfo">
+                                4:22PM 2015-11-30<br>
+                                最近3天体温异常，风险指数75
+                            </span>
+                        </div>
+                        <div class="eventChRight"><img src="images/icon_more.png" width="40px"></div>
+                </li>
+                </a>
+                <a href="docSpage.html">
+                <li class="eventCh3 clearfix">
+                        <div class="eventChLeft"><img src="images/tx3.jpg" width="88px"></div>
+                        <div class="eventChCenter">
+                            <span class="pName">王舒<i class="eventTip ycl">已处理</i></span>
+                            <span class="pinfo">
+                                1:30PM 2015-11-11<br>
+                                最近一周睡眠异常，风险指数65
+                            </span>
+                        </div>
+                        <div class="eventChRight"><img src="images/icon_more.png" width="40px"></div>
+                </li>
+                </a>
+                <a href="docSpage1.html">
+                <li class="eventCh4 clearfix">
+                        <div class="eventChLeft"><img src="images/tx4.jpg" width="88px"></div>
+                        <div class="eventChCenter">
+                            <span class="pName">何莉<i class="eventTip ycl">已处理</i></span>
+                            <span class="pinfo">
+                                16:42PM 2015-11-1<br>
+                                最近3周缺乏运动，风险指数50
+                            </span>
+                        </div>
+                        <div class="eventChRight"><img src="images/icon_more.png" width="40px"></div>
+                </li>
+                </a>
+            </ul>
+        </div>
+        <!-- 病人 -->
+        <div class="docMainPatient"></div>
+        <!-- 通知 -->
+        <div class="docMainNotice"></div>
+        <!-- 我 -->
+        <div class="docMainMine"></div>
+    </div>
+</body>

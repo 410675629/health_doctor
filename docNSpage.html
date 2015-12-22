@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>我的病人【已处理】</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/doc.css">
+    <script type="text/javascript">
+    if(/Android (\d+\.\d+)/.test(navigator.userAgent)){
+        var version = parseFloat(RegExp.$1);
+        if(version>2.3){
+            var phoneScale = parseInt(window.screen.width) / 640;
+            document.write('<meta name="viewport" content="width=640, minimum-scale = '+ phoneScale +', maximum-scale = '+ phoneScale +', target-densitydpi=device-dpi">');
+        }else{
+            document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+        }
+    }else{
+        document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+    }
+    </script>
+</head>
+<body>
+    <div class="docNSpageHeader">
+        <div class="back"> 
+            <a class="back-button" href="docMain.html">
+                <img src="images/icon_back.png"/>
+            </a> 
+        </div>
+        <div class="title">
+            <div style="line-height: 4rem;font-size: 120%">未处理异常</div>
+        </div>
+    </div>
+    <div class="docNSpageLeft">
+        <div class="docNSpageContent">
+            <div class="docNImg">
+                <a href="docMyPa.html"><img src="images/tx1.jpg" width="88px"></a>
+            </div>
+            <div class="docNDes">
+                <span class="docName">李慧</span> 
+                <span class="docNSex">女</span>
+                <span class="docNAge">20岁</span>
+            </div>
+            <div class="docNTel">
+                <img src="images/icon_phone.png" width="60px"/>
+            </div>
+        </div>
+        <div class="docSpageResult">
+            <i class="tip wcl">未处理</i>
+            <span class="pTime">9:30PM 2015-9-11</span>
+            <span class="pDetail">最近10分钟心率异常波动</span>
+        </div>
+        
+       <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+        <div class="container" style="margin:-2rem 0 0 0;">
+            <!-- 心率-->
+            <div class="content" style="padding:0 0 3rem 0;">
+                <div id="showHeartBeat" class="dataZoom" ></div>
+            </div>    
+        </div>
+
+        <div class="docNSpageCheck">
+            <span class="resultShow">诊断</span>
+            <div class="check">
+                <div class="radio" >
+                    <span class="radioc" data-mess="进一步观察" data-val="0"></span>
+                </div>
+                <span class="des">进一步观察</span></br>
+            </div>
+            <div class="check">
+                 <div class="radio">
+                    <span class="radioc" data-mess="请到医院接受观察" data-val="1"></span>
+                </div>
+                <span class="des">请到医院接受观察</span>
+            </div>
+            <input type="text" placeholder="或输入医嘱" class="docSuggest">
+            <input type="button"  value="提交" class="submit"><br><br><br>
+
+        </div>
+    </div>
+
+    <!-- ECharts单文件引入 -->
+    <script src="js/echarts.js"></script>
+    <script type="text/javascript">
+        // 路径配置
+        require.config({
+            paths: {
+                echarts: './build/dist'
+            }
+        });
+    </script>    
+    <script src="js/canvas_heartBeat.js"></script>
+    <script type="text/javascript">
+        var flag =true
+        document.getElementsByClassName('docNSpageCheck')[0].onclick=function  (e) {
+            var target =e.target;
+            var className = target.getAttribute('class');
+            var index  =target.getAttribute('data-val');
+            if(className =='radioc'){
+                if(flag){
+                    document.getElementsByClassName("radioc")[index].style.background="#a4fba4";
+                    flag =false;
+                }else{
+                    document.getElementsByClassName("radioc")[index].style.background="#fff";
+                    flag=true;
+                }
+            }
+        }
+    </script>
+</body>

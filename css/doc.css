@@ -1,0 +1,672 @@
+/**  docMain.html***/
+html , body{font-family: "Microsoft YaHei",  Arial, Helvetica, sans-serif;}
+.docMainHeader{
+	text-align: center;
+	width: 100%;
+	height: 15rem;
+	background: rgb(21,157,235);
+	z-index: 9999;
+}
+.docMainHeader .docMainName{
+	padding: 1rem 0;
+	width: 100%;
+	height: 2rem;
+	line-height: 2rem;
+}
+.docMainHeader .docMainName span{
+	color: #fff;
+	font-size: 1.8rem;
+	font-family: "Microsoft YaHei",  Arial, Helvetica, sans-serif;
+}
+.docMainHeader .docMainHeaderContent{
+	width: 80%;
+	height: 8rem;
+}
+.docMainHeaderContent .docMainPN{
+	display: inline-block;
+	float: left;
+	width: 50%;
+}
+.docMainHeaderContent .docMainPE{
+	display: inline-block;
+	float: right;
+	width: 50%;
+}
+.docMainHeaderContent span{
+	font-size: 6rem;
+	color: #fff;
+	display: block;
+}
+.docMainHeaderContent pre{
+	font-size: 1rem;
+	height: 1.2rem;
+	line-height: 1.2rem;
+	color: #fff;
+	display: inline-block;
+}
+
+.docMainContent {
+	box-sizing:border-box;
+	position: relative;
+	width: 100%;
+	height: auto;
+}
+.docMainContent .docMainEventHeader{
+	padding:.5rem 1rem;
+	font-size: 1.4rem;
+	height: 2rem;line-height: 2rem;
+}
+.docMainContent ul{
+	position: relative;
+
+} 
+.docMainContent ul li{
+	width: 100%;
+	background: #fff;
+	margin-bottom: .5rem;
+	display:block;
+	overflow: hidden;
+	padding:0 0 1rem 0
+}
+.eventChLeft,.eventChCenter, .eventChRight{
+}
+.eventChLeft img{ border-radius:44px;}
+.docMainContent ul li .eventTip{
+	display:inline-block;
+	padding:0 0.6rem;
+	height: 1.2rem;
+	line-height: 1.2rem;
+	text-align: center;
+	border-radius: 1.2rem;
+	color: #fff;
+	font-size: 0.8rem;
+	margin:0 0 0 .8rem;
+	font-style:normal;
+	vertical-align:middle
+}
+.docMainContent ul li .eventChLeft{
+	padding-top:1.5rem;
+	padding-left: 1.5rem;
+	float: left;
+	width: 5rem;
+	height: 5rem;
+}
+.docMainContent ul li.eventChLeft img{
+	height: 5rem;
+	line-height: 5rem;
+}
+.docMainContent ul li .eventChCenter{
+	float: left;
+	padding-top: 1rem;
+	margin-left: 1rem;
+	width: 16rem;
+}
+.docMainContent ul li .eventChRight{
+	float: right;
+	padding-top:1rem;
+	width: 3.5rem;
+	height: 6.5rem;
+	text-align: center;
+	line-height: 7.5rem;
+
+}
+.docMainContent ul li span{
+	display: block;
+}
+.pName{
+	font-size:1.6rem;
+}
+.pTime{
+	font-size:.9rem;
+	color:#999;
+	padding:.5rem 0 0 0;
+}
+.pDetail{
+	font-size:.9rem;
+	color:#999;
+}
+.pinfo{
+	font-size:.9rem;
+	color:#999;
+	padding:.5rem 0 0 0;
+	line-height:1.7rem
+}
+.wcl{	
+	background: rgb(243,11,11);
+}
+.ycl{   
+	background: rgb(93,196,250);
+}
+
+
+/**  docSpage.html***/
+/*头部*/
+.docSpageHeader{
+	position: fixed;
+	z-index: 9999;
+	width: 100%;
+	height: 4.4rem;
+	background: rgb(21,157,235);
+}
+.docSpageHeader .back{
+	float: left;
+    height: 4.4rem;
+    line-height: 4.4rem;
+    width: 4rem;
+}
+.docSpageHeader .back a{
+	height: 4.4rem;
+	float: left;
+}
+.docSpageHeader .back img{
+	width: 2.4rem;
+	padding: 1rem 0 0 1rem;
+}
+.docSpageHeader .title {
+    font-size: 150%;
+    float: left;
+    width: 24rem;
+    height: 4.4rem;
+    color: #fff;
+    text-align: center;
+	font-family: "Microsoft YaHei",  Arial, Helvetica, sans-serif;
+}
+.docSpageLeft{
+	position: relative;
+	top:4.4rem;
+}
+/*病人信息*/
+.docSpageContent{
+	width: 100%;
+	height: 7rem;
+	background: #fff;
+}
+.docSpageContent .docImg{
+	position: relative;
+	float: left;
+	width: 7rem;
+	height: 7rem;
+}
+.docSpageContent .docImg img{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -2.2rem 0 0 -2.2rem;
+	border-radius: 2.2rem;
+}
+.docSpageContent .docDes{
+	padding: 2rem 0 0 1rem;
+	float: left;
+	width: 17rem;
+	height: 5rem;
+
+}
+.docSpageContent .docTel{
+	position: relative;
+	float: left;
+	width: 7rem;
+	height: 7rem;
+}
+.docSpageContent .docTel img{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -1.4rem 0 0 -0.8rem;
+}
+.docSpageContent .docDes  .docName{
+	font-size: 2rem;
+}
+/*处理结果*/
+.docSpageResult{
+	position: relative;
+	margin-top: 0.5rem;
+	width: 100%;
+	height: 10rem;
+	background: #fff;
+	overflow:hidden; display:block;
+}
+.docSpageResult span{
+	display: block;
+	position: relative;
+	top:3rem;
+	height: 2rem;
+	line-height: 2rem;
+	font-size: 1rem;
+	color: #999;
+	padding-left: 1rem;
+}
+.docSpageResult .tip {
+	display: block;
+	position: absolute;
+	width: 5rem;
+	height: 1.7rem;
+	line-height: 1.7rem;
+	top: 1.4rem;
+	left: 1rem;
+	text-align: center;
+	border-radius: 1.7rem;
+	color: #fff;
+	font-style:normal;
+}
+.docSpageCheck{
+	padding:1rem;
+	width: 100%;
+	background: #fff;
+	height: 6rem;
+}
+/**docNSpage.html*/
+/*头部*/
+.docNSpageHeader{
+	position: fixed;
+	z-index: 9999;
+	width: 100%;
+	height: 4.4rem;
+	background: rgb(21,157,235);
+}
+.docNSpageHeader .back{
+	float: left;
+    height: 4.4rem;
+    line-height: 4.4rem;
+    width: 4rem;
+}
+.docNSpageHeader .back a{
+	height: 4.4rem;
+	float: left;
+}
+.docNSpageHeader .back img{
+	width: 2.4rem;
+	padding: 1rem 0 0 1rem;
+}
+.docNSpageHeader .title {
+    font-size: 150%;
+    float: left;
+    width: 24rem;
+    height: 4.4rem;
+    color: #fff;
+    text-align: center;
+}
+.docNSpageLeft{
+	position: relative;
+	top:4.4rem;
+}
+/*病人信息*/
+.docNSpageContent{
+	width: 100%;
+	height: 7rem;
+	background: #fff;
+}
+.docNSpageContent .docNImg{
+	position: relative;
+	float: left;
+	width: 7rem;
+	height: 7rem;
+}
+.docNSpageContent .docNImg img{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -2.2rem 0 0 -2.2rem;
+	border-radius: 2.2rem;
+}
+.docNSpageContent .docNDes{
+	padding: 2rem 0 0 1rem;
+	float: left;
+	width: 17rem;
+	height: 5rem;
+
+}
+.docNSpageContent .docNTel{
+	position: relative;
+	float: left;
+	width: 7rem;
+	height: 7rem;
+}
+.docNSpageContent .docNTel img{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -1.4rem 0 0 -1.2rem;
+}
+.docNSpageContent .docNDes  .docName{
+	font-size: 2rem;
+}
+/*处理结果*/
+.docNSpageResult{
+	position: relative;
+	margin-top: 0.5rem;
+	width: 100%;
+	height: 7rem;
+	background: #fff;
+}
+.docNSpageResult span{
+	display: block;
+	position: relative;
+	top:3rem;
+	height: 2rem;
+	line-height: 2rem;
+	font-size: 1.2rem;
+	color: #999;
+	padding-left: 2rem;
+}
+.docNSpageResult .tip {
+	display: block;
+	position: absolute;
+	width: 5rem;
+	height: 1.7rem;
+	line-height: 1.7rem;
+	top: 1.4rem;
+	left: 1rem;
+	text-align: center;
+	border-radius: 1.7rem;
+	color: #fff;
+	font-style:normal;
+}
+.docNSpageCheck{
+	box-sizing:border-box;
+	padding:1rem;
+	width: 100%;
+	background: #fff;
+	height: auto;
+}
+.docNSpageCheck .check {
+	height: 4rem;
+	line-height: 4rem;
+}
+.docNSpageCheck .radio{
+	position: relative;
+	line-height: 2rem;
+	width: 2rem;
+	height: 2rem;
+	border-radius: 1rem;
+	background: #ddd;
+	display: inline-block;
+	vertical-align: middle;
+}
+.docNSpageCheck .radioc{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -.9rem 0 0 -.9rem;
+	line-height: 1.9rem;
+	width: 1.8rem;
+	height: 1.8rem;
+	border-radius: 0.9rem;
+	background: #fff;
+	display: inline-block;
+}
+.docNSpageCheck .des{
+	vertical-align: middle;
+	height: 2rem;
+	line-height: 2rem;
+	font-size: 1.2rem;
+}
+
+.resultShow{
+	font-size: 2rem;
+	height: 4rem;
+	line-height: 4rem;
+	display: block;
+}
+.resultDes{
+	font-size: 1rem;
+	line-height: 2rem;
+	color: #999;
+}
+
+.docSuggest{
+    box-sizing: border-box;
+    padding: 0rem;
+    width: 95%;
+    height: 3rem;
+    outline: none;
+    border: none;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #f1f1f1
+}
+
+.submit{
+	margin-top: 1rem;
+    width: 100%;
+    display: block;
+    height: 3rem;
+    border: none;
+    background: #1798f3;
+    font-size: 1.5rem;
+    border-radius: 0.4rem;
+    color: #fff;
+}
+
+
+
+/**docMyPa.html  我的病人*/
+
+/*头部*/
+.docMyPaHeader{
+	position: fixed;
+	z-index: 9999;
+	width: 100%;
+	height: 4.4rem;
+	background: rgb(21,157,235);
+}
+.docMyPaHeader .back{
+	float: left;
+    height: 4.4rem;
+    line-height: 4.4rem;
+    width: 4rem;
+}
+.docMyPaHeader .back a{
+	height: 4.4rem;
+	float: left;
+}
+.docMyPaHeader .back img{
+	width: 2.4rem;
+	padding: 1rem 0 0 1rem;
+}
+.docMyPaHeader .title {
+    font-size: 150%;
+    float: left;
+    width: 24rem;
+    height: 4.4rem;
+    color: #fff;
+    text-align: center;
+}
+.docMyPaLeft{
+	position: relative;
+	top:4.4rem;
+}
+
+/*病人信息*/
+.docMyPaContent{
+	width: 100%;
+	height: 7rem;
+	background: #fff;
+	margin:0 0 0.5rem 0;
+}
+.docMyPaContent .docImg{
+	position: relative;
+	float: left;
+	width: 7rem;
+	height: 7rem;
+}
+.docMyPaContent .docImg img{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -2.2rem 0 0 -2.2rem;
+	border-radius: 2.2rem;
+}
+.docMyPaContent .docDes{
+	padding: 2rem 0 0 1rem;
+	float: left;
+	width: 17rem;
+	height: 5rem;
+
+}
+.docMyPaContent .docTel{
+	position: relative;
+	float: left;
+	width: 7rem;
+	height: 7rem;
+}
+.docMyPaContent .docTel img{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -1.4rem 0 0 -0.8rem;
+}
+.docMyPaContent .docDes  .docName{
+	font-size: 2rem;
+}
+/*处理结果*/
+.docMyPaResult{
+	position: relative;
+	margin-top: 0.5rem;
+	width: 100%;
+	height: 9rem;
+	background: #fff;
+}
+.docMyPaResult span{
+	display: block;
+	position: relative;
+	top:3rem;
+	height: 3rem;
+	line-height: 2rem;
+	font-size: 1rem;
+	color: #999;
+	padding-left: 1rem;
+}
+.docMyPaResult .tip {
+	display: block;
+	position: absolute;
+	width: 5rem;
+	height: 1.7rem;
+	line-height: 1.7rem;
+	top: 1.4rem;
+	left: 1rem;
+	text-align: center;
+	border-radius: 1.7rem;
+	color: #fff;
+	font-style:normal;
+}
+
+.docMyPaResult .more{
+	position: absolute;
+	top: 50%;
+	right: 1rem;
+	margin: -13px  0 0 -33px;
+}
+/***docMyPaList.html*/
+.docMyPaListContent{
+	background: #fff;
+	position: relative;
+	top:4.4rem;
+	width: 100%;
+	height: auto;
+}
+.docMyPaListContent .NCheckPaList .docMPContent{
+    width: 100%;
+    height: 5rem;
+    background: #fff
+}
+.docMyPaListContent .NCheckPaList ul li{
+	border-bottom: 1px solid #f1f1f1;
+}
+.docMyPaListContent .NCheckPaList .docMPImg{
+    position: relative;
+    float: left;
+    width: 7rem;
+    height: 5rem;
+}
+
+ .docMyPaListContent  .NCheckPaList .docMPImg img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -2.2rem 0 0 -2.2rem;
+    border-radius: 2.2rem;
+}
+.docMyPaListContent  .NCheckPaList .docMPDes{
+    padding: 1rem 0 0 1rem;
+    float: left;
+    width: 12rem;
+    height: 3rem;
+}
+
+.docMyPaListContent .NCheckPaList .docMPDetail{
+	position: relative;
+    float: left;
+    width: 12rem;
+    height: 5rem;
+}
+.docMyPaListContent .NCheckPaList .MPtip{
+	position: absolute;
+	top: 2rem;
+	width: 5rem;
+	height: 2rem;
+	line-height: 2rem;
+	font-size: 1.3rem;
+	text-align: center;
+	display: inline-block;
+	border-radius: 1rem;
+	color:#fff;
+}
+.NCheckPaList .accpet{
+	left: 1rem;
+	background: red;
+}
+.NCheckPaList .reject{
+	left: 7rem;
+	background: rgb(93,196,255);
+}
+
+.docMyPaListContent .CheckPaList .docMPContent{
+    width: 100%;
+    height: 4rem;
+    background: #fff
+}
+.docMyPaListContent .CheckPaList ul li{
+	border-bottom: 1px solid #f1f1f1;
+}
+.docMyPaListContent .CheckPaList .docMPImg{
+    position: relative;
+    float: left;
+    width: 7rem;
+    height: 4rem;
+}
+
+.docMyPaListContent  .CheckPaList .docMPImg img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -1.5rem 0 0 -2.2rem;
+    border-radius: 2.2rem;
+}
+.docMyPaListContent  .CheckPaList .docMPDes{
+    padding: 1rem 0 0 0rem;
+    float: left;
+    width: 17rem;
+    height: 3rem;
+	font-size:1.2rem;
+	margin:0 0 0 -0.9rem
+}
+
+.docMyPaListContent .CheckPaList .docMPDetail{
+	position: relative;
+    float: right;
+    line-height: 4rem;
+    text-align: right;
+    font-size: 2rem;
+    width: 7rem;
+    height: 4rem;
+	margin:0 1rem 0 0;
+}
+.docMyPaListContent .CheckPaList .docMPDetail a{
+	background: red;
+	color: #fff;
+	width: 7rem;
+	display: inline-block;
+}
+.CheckPaList h2{ font-size:2rem; font-weight:normal; padding:1rem}
+.Nplist1{ overflow:hidden; display:block; height:4rem}
+.docSex , .docAge , .docNSex , .docNAge{ font-size:.9rem !important; color:#999!important; margin:0 0 0 .4rem!important}
+.datatitle{ padding:0 0 0 1rem; text-align:left; font-size:1.2rem; color:#222}

@@ -1,0 +1,90 @@
+html{
+    font-size: 125%;
+    background: #f1f1f1;
+	color:#222;
+	font-family: "Microsoft YaHei",  Arial, Helvetica, sans-serif;
+}
+body{
+	color:#222;
+	font-family: "Microsoft YaHei",  Arial, Helvetica, sans-serif;
+}
+a {
+	color: #222;
+	text-decoration: none;}
+
+a:hover {
+	text-decoration: none;
+}
+*{padding: 0;margin: 0 auto;}
+ul,li{
+    list-style: none;
+}
+h2{
+    padding-left: 2rem;
+    height: 4rem;
+    line-height: 4rem;
+}
+.clearfix:after{
+  content: "020"; 
+  display: block; 
+  height: 0; 
+  clear: both; 
+  visibility: hidden;  
+}
+
+.container .main{
+    margin-left: 6rem;
+    height:15rem;
+    font-size: 2rem;
+}
+.container .dataZoom{
+    height:15rem;
+    font-size: 1rem;
+    z-index: 1;
+}
+.container .content{
+    position: relative;
+    margin-bottom: .5rem;    
+    background: #fff;
+	padding:1.5rem 0;
+	
+}
+.container .left{
+    width: 6rem;
+    float: left;
+    height: 10rem;
+    box-sizing:border-box;
+    padding: 1rem .5rem;
+    text-align: center;
+    display: inline-block;
+}
+.container .num{
+    display: block;
+    font-weight: 700;
+    text-align: center;
+    height: 5rem;
+    line-height: 5rem;
+}
+.container .num-xt,.container .num-st{
+    font-size: 2.5rem;
+    color:#D0021B;
+}
+.container .num-ht, .container .num-ts{
+    font-size: 2rem;
+    color:#4A90E2;
+}
+.container .num-txt{
+    font-size: 1.2rem;
+    color: #ccc;
+    text-align: center;
+    display: block;
+}
+.main{
+	max-width:640px;
+	margin:auto;
+	min-height:100%;
+	position:relative;
+	height:100%;
+	padding:0px;
+	background:#fff;
+	}
