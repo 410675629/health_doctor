@@ -146,112 +146,144 @@ require(
         });*/
         // 动态添加默认不显示的数据
         showHeartBeat.on(config.EVENT.LEGEND_SELECTED, function (param){
-            var selected = param.selected;
             var len;
             var added;
-            if (selected['前1小时']) {
-                len = dataZoom_showHeartBeat.series.length;
-                added = false;
-                while (len--) {
-                    if (dataZoom_showHeartBeat.series[len].name == '前1小时') {
-                        // 已经添加
-                        added = true;
-                        break;
-                    }
-                }
-                if (!added) {
-                    showHeartBeat.showLoading({
-                        text : '数据获取中',
-                        effect: 'whirling'
-                    });
-                    setTimeout(function (){
-                        dataZoom_showHeartBeat.series=[];//清空列表
-                        dataZoom_showHeartBeat.xAxis =[];//重绘x轴
-                        dataZoom_showHeartBeat.dataZoom.show =true;
+            var selected = param.selected;
+            var  target  = param.target;
+            
+            switch(target){
+                case '实时':
+                    //doing something
+                    break;
+                case '前1小时':
+                    //doing something
+                    loading_one();
+                    break;
+                case '前6小时':
+                    loading_six();
+                    //doing something
+                    break;
+                case '实时':
+                    //doing something
+                    break;
+                default:
 
-                        dataZoom_showHeartBeat.xAxis.push({
-                            type : 'category',
-                            boundaryGap : false,
-                            data : function (){
-                                var list = [];
-                                var n = 0;
-                                while (n++ < 120) {
-                                    list.push(n);
-                                }
-                                return list;
-                            }()
-                        })
-                        dataZoom_showHeartBeat.series.push({
-                            name:'前1小时',
-                            type:'line',
-                            data:function (){
-                                var list = [];
-                                for (var i = 1; i <= 150; i++) {
-                                    list.push(Math.round(Math.random()* 30));
-                                }
-                                return list;
-                            }()
-                        });
-                        dataZoom_showHeartBeat.legend.selected['实时'] =false;
-                        dataZoom_showHeartBeat.legend.selected['前6小时'] =false;
-                        showHeartBeat.hideLoading();
-                        clearInterval(timeTicket);
-                        showHeartBeat.setOption(dataZoom_showHeartBeat);
-                    }, 1000)
-                } 
+                    break;
             }
 
-            if (selected['前6小时']) {
-                len = dataZoom_showHeartBeat.series.length;
-                added = false;
-                while (len--) {
-                    if (dataZoom_showHeartBeat.series[len].name == '前6小时') {
-                        // 已经添加
-                        added = true;
-                        break;
-                    }
-                }
-                if (!added) {
-                    showHeartBeat.showLoading({
-                        text : '数据获取中',
-                        effect: 'whirling'
-                    });
-                    setTimeout(function (){
-                        dataZoom_showHeartBeat.series=[];//清空列表
-                        dataZoom_showHeartBeat.xAxis =[];//重绘x轴
-                        dataZoom_showHeartBeat.dataZoom.show =true;
-                        dataZoom_showHeartBeat.dataZoom.start =70;
-                        dataZoom_showHeartBeat.xAxis.push({
-                            type : 'category',
-                            boundaryGap : false,
-                            data : function (){
-                                var list = [];
-                                var n = 0;
-                                while (n++ < 900) {
-                                    list.push(n);
-                                }
-                                return list;
-                            }()
-                        })
-                        dataZoom_showHeartBeat.series.push({
-                            name:'前6小时',
-                            type:'line',
-                            data:function (){
-                                var list = [];
-                                for (var i = 1; i <= 900; i++) {
-                                    list.push(Math.round(Math.random()* 30));
-                                }
-                                return list;
-                            }()
+            function loading_one () {
+               dataZoom_showHeartBeat.legend.selected['实时'] =false;
+                dataZoom_showHeartBeat.legend.selected['前1小时'] =true;
+                dataZoom_showHeartBeat.legend.selected['前6小时'] =false;
+                    clearInterval(timeTicket);
+                  dataZoom_showHeartBeat.xAxis.push({
+                        type : 'category',
+                        boundaryGap : false,
+                        data : function (){
+                            var list = [];
+                            var n = 0;
+                            while (n++ < 120) {
+                                list.push(n++);
+                            }
+                            return list;
+                        }()
+                    })
+
+                    len = dataZoom_showHeartBeat.series.length;
+                    added = false;
+                    if (!added) {
+                        showHeartBeat.showLoading({
+                            text : '数据获取中',
+                            effect: 'whirling'
                         });
-                        dataZoom_showHeartBeat.legend.selected['实时'] =false;
-                        dataZoom_showHeartBeat.legend.selected['前1小时'] =false;
-                        showHeartBeat.hideLoading();
-                        clearInterval(timeTicket);
-                        console.log(dataZoom_showHeartBeat)
-                        showHeartBeat.setOption(dataZoom_showHeartBeat);
-                    }, 2000)
-                } 
+                        setTimeout(function (){
+                            dataZoom_showHeartBeat.series=[];//清空列表
+                            dataZoom_showHeartBeat.xAxis =[];//重绘x轴
+                            dataZoom_showHeartBeat.dataZoom.show =true;
+
+                            dataZoom_showHeartBeat.xAxis.push({
+                                type : 'category',
+                                boundaryGap : false,
+                                data : function (){
+                                    var list = [];
+                                    var n = 0;
+                                    while (n++ < 120) {
+                                        list.push(n);
+                                    }
+                                    return list;
+                                }()
+                            })
+                            dataZoom_showHeartBeat.series.push({
+                                name:'前1小时',
+                                type:'line',
+                                data:function (){
+                                    var list = [];
+                                    for (var i = 1; i <= 150; i++) {
+                                        list.push(Math.round(Math.random()* 30));
+                                    }
+                                    return list;
+                                }()
+                            });
+                            showHeartBeat.hideLoading();
+                            clearInterval(timeTicket);
+                            showHeartBeat.setOption(dataZoom_showHeartBeat);
+                        }, 1000)
+                    } 
+                
+
+            }
+            //加载前六个小时的情况
+            function loading_six () {
+                
+                    len = dataZoom_showHeartBeat.series.length;
+                    added = false;
+                    while (len--) {
+                        if (dataZoom_showHeartBeat.series[len].name == '前6小时') {
+                            // 已经添加
+                            added = true;
+                            break;
+                        }
+                    }
+                    if (!added) {
+                        showHeartBeat.showLoading({
+                            text : '数据获取中',
+                            effect: 'whirling'
+                        });
+                        setTimeout(function (){
+                            dataZoom_showHeartBeat.series=[];//清空列表
+                            dataZoom_showHeartBeat.xAxis =[];//重绘x轴
+                            dataZoom_showHeartBeat.dataZoom.show =true;
+                            dataZoom_showHeartBeat.dataZoom.start =70;
+                            dataZoom_showHeartBeat.xAxis.push({
+                                type : 'category',
+                                boundaryGap : false,
+                                data : function (){
+                                    var list = [];
+                                    var n = 0;
+                                    while (n++ < 900) {
+                                        list.push(n);
+                                    }
+                                    return list;
+                                }()
+                            })
+                            dataZoom_showHeartBeat.series.push({
+                                name:'前6小时',
+                                type:'line',
+                                data:function (){
+                                    var list = [];
+                                    for (var i = 1; i <= 900; i++) {
+                                        list.push(Math.round(Math.random()* 30));
+                                    }
+                                    return list;
+                                }()
+                            });
+                            
+                            showHeartBeat.hideLoading();
+                            clearInterval(timeTicket);
+                            console.log(dataZoom_showHeartBeat)
+                            showHeartBeat.setOption(dataZoom_showHeartBeat);
+                        }, 2000)
+                    } 
             }
         });  
 
@@ -260,10 +292,10 @@ require(
         clearInterval(timeTicket);
         var timeTicket = setInterval(function (){
             // 动态数据接口 addData
-            var heartJson = JavaScriptInterface.jsontohtml();//从客户端中读取来的数据
-            var obj = eval("("+heartJson+")");//解析出来的json
-            var curHeartBeating = obj.rate ;//实时心跳数据
-            var curTime =obj.time;
+           /* var heartJson = JavaScriptInterface.jsontohtml();//从客户端中读取来的数据
+            var obj = eval("("+heartJson+")");*///解析出来的json
+            var curHeartBeating = 11||obj.rate ;//实时心跳数据
+            var curTime ="12:00"||obj.time;
             /*data_arr.push(curHeartBeating);
             if(data_arr.length>9){
                 data_arr.shift();//移除掉第一项
