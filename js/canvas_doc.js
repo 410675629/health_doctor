@@ -30,51 +30,6 @@ require(
             title : {
                     text: ' '
             },
-            legend:{
-                show:true,
-                selected:{
-                    '前1小时':false,
-                    '前6小时':false,
-                    "前12小时":false,
-                    "前1天":false,
-                    "前7天":false
-                },
-                data:['实时',{
-                        name:'前1小时',
-                        textStyle:{
-                            color:'#999'
-                        }
-                    },{
-                        name:'前6小时',
-                        textStyle:{
-                            color:'#999'
-                        }
-                    },{
-                        name:'前12小时',
-                        textStyle:{
-                            color:'#999'
-                        }
-                    },{
-                        name:'前1天',
-                        textStyle:{
-                            color:'#999'
-                        }
-                    },{
-                        name:'前7天',
-                        textStyle:{
-                            color:'#999'
-                        }
-                    }
-                    ],
-                orient: 'horizontal', // 'vertical'
-                x: 'center', // 'center' | 'left' | {number},
-                y: 'bottom', // 'center' | 'bottom' | {number}
-                textStyle:{
-                    fontSize:16,
-                    fontFamily:'Microsoft YaHei',
-					color:'222222'
-                }
-            },
             grid:{
                 borderWidth:0,
                 y:48,  //离canvas最上面的距离是40px
@@ -141,38 +96,166 @@ require(
             calculable:false
         };
         showHeartBeat.setOption(dataZoom_showHeartBeat).setTheme('macarons', 'infographic');   
-        var config = require('echarts/config');  
-        //监控刷新事件 
-        /*dataZoom1.on(config.EVENT.CLICK, function(param){ 
-            alert("刷新"); 
-        });*/
-        // 动态添加默认不显示的数据
-        showHeartBeat.on(config.EVENT.LEGEND_SELECTED, function (param){
-            var selected = param.selected;
-            var len;
-            var added;
-            if (selected['前1小时']) {
-                len = dataZoom_showHeartBeat.series.length;
-                added = false;
-                while (len--) {
-                    if (dataZoom_showHeartBeat.series[len].name == '前1小时') {
-                        // 已经添加
-                        added = true;
-                        break;
+      
+        //给menu添加事件
+
+            $("#shishi").addClass("heart_hover");
+            $(".heart_menu span").on("click",function(){
+            $(".heart_menu span").removeClass("heart_hover");
+            var span_name=$(this).attr("id");
+            $("#"+span_name.toString()).addClass("heart_hover");
+
+            switch(span_name){
+                case'shishi':
+                loading_shishi();
+                break;
+                case'one':
+                loading_one();
+                break;
+                case'six':
+                loading_six();
+                break;
+                case'twelve':
+                loading_twelve();
+                break;
+                case'oneday':
+                loading_oneday();
+                break;
+                case'sevenday':
+                loading_sevenday();
+                break;
+            }
+
+        })
+        
+
+
+        //实时的方法
+    function loading_shishi(){
+        var showHeartBeat = ec.init(document.getElementById('showHeartBeat'));
+        var dataZoom_showHeartBeat = {
+            title : {
+                    text: ' '
+            },
+            grid:{
+                borderWidth:0,
+                y:48,  //离canvas最上面的距离是40px
+                x:40,
+                x2:30
+            },
+            dataZoom : {
+                show : false,
+                realtime : true,
+                //orient: 'vertical',   // 'horizontal'
+                /*x: 0,*/
+                y: 27,
+                //width: 400,
+                height: 28,
+                //dataBackgroundColor: 'rgba(138,43,226,0.5)',
+                //fillerColor: 'rgba(38,143,26,0.6)',
+                //handleColor: 'rgba(128,43,16,0.8)',
+                //xAxisIndex:[],
+                //yAxisIndex:[],
+                start : 70,
+                end : 100
+            },
+            xAxis : [
+                {
+                    type : 'category',
+                    boundaryGap : false,
+                    splitLine:{show: false},//去掉网格线
+                    data : (function (){
+                        var now = new Date();
+                        var res = [];
+                        var len = 60;
+                        while (len--) {
+                            res.unshift(now.toLocaleTimeString().replace(/^\D*/,''));
+                            now = new Date(now - 10000);
+                        }
+                        return res;
+                    })(),
+                    axisLabel :{
+                        textStyle : {
+                            color : '#999',
+                            fontSize:14
+                        }   
                     }
                 }
-                if (!added) {
-                    showHeartBeat.showLoading({
-                        text : '数据获取中',
-                        effect: 'whirling'
-                    });
-                    setTimeout(function (){
-                        dataZoom_showHeartBeat.series=[];//清空列表
-                        dataZoom_showHeartBeat.xAxis =[];//重绘x轴
-                        dataZoom_showHeartBeat.dataZoom.show =true;
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                    name:'实时',
+                    type:'line',
+                    data:function (){
+                        var list = [];
+                        for (var i = 1; i <= 120; i++) {
+                            list.push(Math.round(Math.random()* 120));
+                        }
+                        return list;
+                    }()
+                }
+            ],
+            calculable:false
+        };
+        showHeartBeat.setOption(dataZoom_showHeartBeat).setTheme('macarons', 'infographic');
+                var lastIndex = 0;
+        var len = dataZoom_showHeartBeat.series[0].data.length;
+        //clearInterval(timeTicket);
+        var timeTicket = setInterval(function (){
+            // 动态数据接口 addData
+            lastIndex += 1;
+            showHeartBeat.addData([
+                [
+                    0,        // 系列索引
+                    dataZoom_showHeartBeat.series[0].data[lastIndex%len], // 新增数据
+                    false,     // 新增数据是否从队列头部插入
+                    false,     // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                    dataZoom_showHeartBeat.xAxis[0].data[lastIndex%len]
+                ]
+            ]);
+        }, 5000);
+    }
+        //以上是实时
 
-                        dataZoom_showHeartBeat.xAxis.push({
-                            type : 'category',
+
+        //前1小时前1小时前1小时前1小时前1小时
+    function loading_one(){
+        clearInterval(timeTicket);
+        var showHeartBeat = ec.init(document.getElementById('showHeartBeat'));
+        var dataZoom_showHeartBeat = {
+            title : {
+                    text: ' '
+            },
+            grid:{
+                borderWidth:0,
+                y:48,  //离canvas最上面的距离是40px
+                x:40,
+                x2:30
+            },
+            dataZoom : {
+                show : true,
+                realtime : true,
+                //orient: 'vertical',   // 'horizontal'
+                /*x: 0,*/
+                y: 27,
+                //width: 400,
+                height: 28,
+                //dataBackgroundColor: 'rgba(138,43,226,0.5)',
+                //fillerColor: 'rgba(38,143,26,0.6)',
+                //handleColor: 'rgba(128,43,16,0.8)',
+                //xAxisIndex:[],
+                //yAxisIndex:[],
+                start : 70,
+                end : 100
+            },
+            xAxis : [
+                {
+                     type : 'category',
                             boundaryGap : false,
                             data : function (){
                                 var list = [];
@@ -181,10 +264,16 @@ require(
                                     list.push(n);
                                 }
                                 return list;
-                            }()
-                        })
-                        dataZoom_showHeartBeat.series.push({
-                            name:'前1小时',
+                            }()}
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                    name:'前1小时',
                             type:'line',
                             data:function (){
                                 var list = [];
@@ -193,38 +282,46 @@ require(
                                 }
                                 return list;
                             }()
-                        });
-                        dataZoom_showHeartBeat.legend.selected['实时'] =false;
-                        dataZoom_showHeartBeat.legend.selected['前6小时'] =false;
-                        showHeartBeat.hideLoading();
-                        clearInterval(timeTicket);
-                        showHeartBeat.setOption(dataZoom_showHeartBeat);
-                    }, 1000)
-                } 
-            }
-
-            if (selected['前6小时']) {
-                len = dataZoom_showHeartBeat.series.length;
-                added = false;
-                while (len--) {
-                    if (dataZoom_showHeartBeat.series[len].name == '前6小时') {
-                        // 已经添加
-                        added = true;
-                        break;
-                    }
                 }
-                if (!added) {
-                    showHeartBeat.showLoading({
-                        text : '数据获取中',
-                        effect: 'whirling'
-                    });
-                    setTimeout(function (){
-                        dataZoom_showHeartBeat.series=[];//清空列表
-                        dataZoom_showHeartBeat.xAxis =[];//重绘x轴
-                        dataZoom_showHeartBeat.dataZoom.show =true;
-                        dataZoom_showHeartBeat.dataZoom.start =70;
-                        dataZoom_showHeartBeat.xAxis.push({
-                            type : 'category',
+            ],
+            calculable:false
+        };
+        showHeartBeat.setOption(dataZoom_showHeartBeat).setTheme('macarons', 'infographic'); 
+        }
+    
+        //前6小时前6小时前6小时前6小时前6小时前6小时前6小时前6小时
+    function loading_six(){
+        clearInterval(timeTicket);
+        var showHeartBeat = ec.init(document.getElementById('showHeartBeat'));
+        var dataZoom_showHeartBeat = {
+            title : {
+                    text: ' '
+            },
+            grid:{
+                borderWidth:0,
+                y:48,  //离canvas最上面的距离是40px
+                x:40,
+                x2:30
+            },
+            dataZoom : {
+                show : true,
+                realtime : true,
+                //orient: 'vertical',   // 'horizontal'
+                /*x: 0,*/
+                y: 27,
+                //width: 400,
+                height: 28,
+                //dataBackgroundColor: 'rgba(138,43,226,0.5)',
+                //fillerColor: 'rgba(38,143,26,0.6)',
+                //handleColor: 'rgba(128,43,16,0.8)',
+                //xAxisIndex:[],
+                //yAxisIndex:[],
+                start : 70,
+                end : 100
+            },
+            xAxis : [
+                {
+                     type : 'category',
                             boundaryGap : false,
                             data : function (){
                                 var list = [];
@@ -234,9 +331,16 @@ require(
                                 }
                                 return list;
                             }()
-                        })
-                        dataZoom_showHeartBeat.series.push({
-                            name:'前6小时',
+                        }
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                    name:'前6小时',
                             type:'line',
                             data:function (){
                                 var list = [];
@@ -245,21 +349,216 @@ require(
                                 }
                                 return list;
                             }()
-                        });
-                        dataZoom_showHeartBeat.legend.selected['实时'] =false;
-                        dataZoom_showHeartBeat.legend.selected['前1小时'] =false;
-                        showHeartBeat.hideLoading();
-                        clearInterval(timeTicket);
-                        console.log(dataZoom_showHeartBeat)
-                        showHeartBeat.setOption(dataZoom_showHeartBeat);
-                    }, 2000)
-                } 
-            }
-        });  
+                }
+            ],
+            calculable:false
+        };
+        showHeartBeat.setOption(dataZoom_showHeartBeat).setTheme('macarons', 'infographic');   
+        }
+
+        //前12小时前12小时前12小时前12小时前12小时前12小时前12小时前12小时前12小时前12小时前12小时前12小时前12小时前12小时
+    function loading_twelve(){
+        clearInterval(timeTicket);
+        var showHeartBeat = ec.init(document.getElementById('showHeartBeat'));
+        var dataZoom_showHeartBeat = {
+            title : {
+                    text: ' '
+            },
+            grid:{
+                borderWidth:0,
+                y:48,  //离canvas最上面的距离是40px
+                x:40,
+                x2:30
+            },
+            dataZoom : {
+                show : true,
+                realtime : true,
+                //orient: 'vertical',   // 'horizontal'
+                /*x: 0,*/
+                y: 27,
+                //width: 400,
+                height: 28,
+                //dataBackgroundColor: 'rgba(138,43,226,0.5)',
+                //fillerColor: 'rgba(38,143,26,0.6)',
+                //handleColor: 'rgba(128,43,16,0.8)',
+                //xAxisIndex:[],
+                //yAxisIndex:[],
+                start : 70,
+                end : 100
+            },
+            xAxis : [
+                {
+                      type : 'category',
+                            boundaryGap : false,
+                            data : function (){
+                                var list = [];
+                                var n = 0;
+                                while (n++ < 1800) {
+                                    list.push(n);
+                                }
+                                return list;
+                            }()
+                        }
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                      name:'前12小时',
+                            type:'line',
+                            data:function (){
+                                var list = [];
+                                for (var i = 1; i <= 1800; i++) {
+                                    list.push(Math.round(Math.random()* 30));
+                                }
+                                return list;
+                            }()
+                }
+            ],
+            calculable:false
+        };
+        showHeartBeat.setOption(dataZoom_showHeartBeat).setTheme('macarons', 'infographic');   
+        }
+        //前1天前1天前1天前1天前1天前1天前1天前1天前1天前1天前1天前1天前1天前1天前1天前1天
+    function loading_oneday(){
+        clearInterval(timeTicket);
+        var showHeartBeat = ec.init(document.getElementById('showHeartBeat'));
+        var dataZoom_showHeartBeat = {
+            title : {
+                    text: ' '
+            },
+            grid:{
+                borderWidth:0,
+                y:48,  //离canvas最上面的距离是40px
+                x:40,
+                x2:30
+            },
+            dataZoom : {
+                show : true,
+                realtime : true,
+                //orient: 'vertical',   // 'horizontal'
+                /*x: 0,*/
+                y: 27,
+                //width: 400,
+                height: 28,
+                //dataBackgroundColor: 'rgba(138,43,226,0.5)',
+                //fillerColor: 'rgba(38,143,26,0.6)',
+                //handleColor: 'rgba(128,43,16,0.8)',
+                //xAxisIndex:[],
+                //yAxisIndex:[],
+                start : 70,
+                end : 100
+            },
+            xAxis : [
+                {
+                      type : 'category',
+                            boundaryGap : false,
+                            data : function (){
+                                var list = [];
+                                var n = 0;
+                                while (n++ < 3600) {
+                                    list.push(n);
+                                }
+                                return list;
+                            }()
+                        }
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                      name:'前12小时',
+                            type:'line',
+                            data:function (){
+                                var list = [];
+                                for (var i = 1; i <= 3600; i++) {
+                                    list.push(Math.round(Math.random()* 30));
+                                }
+                                return list;
+                            }()
+                }
+            ],
+            calculable:false
+        };
+        showHeartBeat.setOption(dataZoom_showHeartBeat).setTheme('macarons', 'infographic');   
+        }
+
+        //前7天前7天前7天前7天前7天前7天前7天前7天
+    function loading_sevenday(){
+        clearInterval(timeTicket);
+        var showHeartBeat = ec.init(document.getElementById('showHeartBeat'));
+        var dataZoom_showHeartBeat = {
+            title : {
+                    text: ' '
+            },
+            grid:{
+                borderWidth:0,
+                y:48,  //离canvas最上面的距离是40px
+                x:40,
+                x2:30
+            },
+            dataZoom : {
+                show : true,
+                realtime : true,
+                //orient: 'vertical',   // 'horizontal'
+                /*x: 0,*/
+                y: 27,
+                //width: 400,
+                height: 28,
+                //dataBackgroundColor: 'rgba(138,43,226,0.5)',
+                //fillerColor: 'rgba(38,143,26,0.6)',
+                //handleColor: 'rgba(128,43,16,0.8)',
+                //xAxisIndex:[],
+                //yAxisIndex:[],
+                start : 70,
+                end : 100
+            },
+            xAxis : [
+                {
+                      type : 'category',
+                            boundaryGap : false,
+                            data : function (){
+                                var list = [];
+                                var n = 0;
+                                while (n++ < 25200) {
+                                    list.push(n);
+                                }
+                                return list;
+                            }()
+                        }
+            ],
+            yAxis : [
+                {
+                    type : 'value'
+                }
+            ],
+            series : [
+                {
+                      name:'前12小时',
+                            type:'line',
+                            data:function (){
+                                var list = [];
+                                for (var i = 1; i <= 25200; i++) {
+                                    list.push(Math.round(Math.random()* 30));
+                                }
+                                return list;
+                            }()
+                }
+            ],
+            calculable:false
+        };
+        showHeartBeat.setOption(dataZoom_showHeartBeat).setTheme('macarons', 'infographic');   
+        }
 
         var lastIndex = 0;
         var len = dataZoom_showHeartBeat.series[0].data.length;
-        clearInterval(timeTicket);
+        //clearInterval(timeTicket);
         var timeTicket = setInterval(function (){
             // 动态数据接口 addData
             lastIndex += 1;
