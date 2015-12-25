@@ -99,8 +99,8 @@ require(
       
         //给menu添加事件
 
-            $("#shishi").addClass("heart_hover");
-            $(".heart_menu span").on("click",function(){
+        $("#shishi").addClass("heart_hover");
+        $(".heart_menu span").on("click",function(){
             $(".heart_menu span").removeClass("heart_hover");
             var span_name=$(this).attr("id");
             $("#"+span_name.toString()).addClass("heart_hover");
